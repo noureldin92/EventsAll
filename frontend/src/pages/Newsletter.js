@@ -16,7 +16,7 @@ export async function action({ request }) {
     password: data.get("password"),
   };
 
-  let response = await fetch(`http://localhost:8080/${param}`, {
+  let response = await fetch(`https://eventsback.onrender.com/${param}`, {
     method: request.method,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(myData),

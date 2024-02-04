@@ -93,11 +93,11 @@ export async function action({ request, params }) {
     description: data.get("description"),
   };
 
-  let url = "http://localhost:8080/events";
+  let url = "https://eventsback.onrender.com/events";
 
   if (method === "PATCH") {
     const eventId = params.eventId;
-    url = "http://localhost:8080/events/" + eventId;
+    url = "https://eventsback.onrender.com/events/" + eventId;
   }
   let token = localStorage.getItem("token");
   const response = await fetch(url, {

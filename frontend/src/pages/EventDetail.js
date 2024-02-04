@@ -27,7 +27,7 @@ function EventDetailPage() {
 export default EventDetailPage;
 
 async function loadEvent(id) {
-  const response = await fetch("http://localhost:8080/events/" + id);
+  const response = await fetch("https://eventsback.onrender.com/events/" + id);
 
   if (!response.ok) {
     throw json(
@@ -52,7 +52,7 @@ export function loader({ request, params }) {
 export async function action({ params, request }) {
   const eventId = params.eventId;
   let token = localStorage.getItem("token");
-  const response = await fetch("http://localhost:8080/events/" + eventId, {
+  const response = await fetch("https://eventsback.onrender.com/events/" + eventId, {
     method: request.method,
     headers: { Authorization: "Bearer " + token },
   });

@@ -11,7 +11,8 @@ import EventItem from "../components/EventItem";
 
 function EventDetailPage() {
   const { event } = useRouteLoaderData("event-detail");
-
+  let isLoggedIn = useRouteLoaderData("tokenData");
+  console.log(isLoggedIn);
   return (
     <>
       <Suspense
@@ -20,6 +21,11 @@ function EventDetailPage() {
           {(loadedEvent) => <EventItem event={loadedEvent} />}
         </Await>
       </Suspense>
+      {!isLoggedIn && (
+        <p style={{ textAlign: "center", color: "red" }}>
+          Login to manage your events
+        </p>
+      )}
     </>
   );
 }
@@ -52,10 +58,13 @@ export function loader({ request, params }) {
 export async function action({ params, request }) {
   const eventId = params.eventId;
   let token = localStorage.getItem("token");
-  const response = await fetch("https://eventsback.onrender.com/events/" + eventId, {
-    method: request.method,
-    headers: { Authorization: "Bearer " + token },
-  });
+  const response = await fetch(
+    "https://eventsback.onrender.com/events/" + eventId,
+    {
+      method: request.method,
+      headers: { Authorization: "Bearer " + token },
+    }
+  );
 
   if (!response.ok) {
     throw json(

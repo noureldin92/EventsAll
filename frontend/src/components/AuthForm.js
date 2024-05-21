@@ -1,10 +1,4 @@
-import {
-  Form,
-  Link,
-  useActionData,
-  useSearchParams,
-  useNavigation,
-} from "react-router-dom";
+import { Form, Link, useActionData, useSearchParams, useNavigation } from "react-router-dom";
 
 import classes from "./AuthForm.module.css";
 
@@ -20,9 +14,7 @@ function AuthForm() {
       <Form method="post" className={classes.form}>
         <h1>{isLogin ? "Log In" : "Sign Up"}</h1>
         <ul>
-          {data &&
-            data.errors &&
-            Object.values(data.errors).map((err) => <li key={err}>{err}</li>)}
+          {data && data.errors && Object.values(data.errors).map((err) => <li key={err}>{err}</li>)}
         </ul>
         <p>
           <label htmlFor="email">Email</label>
@@ -31,6 +23,10 @@ function AuthForm() {
         <p>
           <label htmlFor="image">Password</label>
           <input id="password" type="password" name="password" />
+        </p>
+        <p>
+          <label htmlFor="image">Name</label>
+          <input id="name" type="name" name="name" />
         </p>
         <p>{data && data.message}</p>
         <div className={classes.actions}>

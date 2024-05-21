@@ -34,6 +34,7 @@ export async function action({ request }) {
       window.location.href = "/";
     } else {
       let dataRecived = await response.json();
+      console.log(dataRecived);
       let token = dataRecived.token;
       localStorage.setItem("token", token);
 

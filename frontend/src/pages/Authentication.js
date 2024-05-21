@@ -15,13 +15,14 @@ export async function action({ request }) {
   let credentials = {
     email: data.get("email"),
     password: data.get("password"),
+    name: data.get("name"),
   };
-  let response = await fetch(`https://eventsback.onrender.com/${param}`, {
+  let response = await fetch(`http://localhost:8080/${param}`, {
     method: "POST",
     body: JSON.stringify(credentials),
     headers: { "Content-Type": "application/json" },
   });
-  
+
   if (response.status === 422 || response.status === 401) {
     return response;
   }
@@ -31,9 +32,12 @@ export async function action({ request }) {
   } else {
     if (param === "signup") {
       window.alert("Signed Up Successfully");
+      const rr = await response.json();
+      console.log(rr);
       return redirect("/");
     } else {
       let dataRecived = await response.json();
+      console.log(dataRecived);
       let token = dataRecived.token;
       localStorage.setItem("token", token);
 

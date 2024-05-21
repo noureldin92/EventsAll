@@ -1,3 +1,5 @@
+"this file path is  backend/util/auth.js";
+
 const { sign, verify } = require("jsonwebtoken");
 const { compare } = require("bcryptjs");
 const { NotAuthError } = require("./errors");

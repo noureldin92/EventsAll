@@ -1,3 +1,5 @@
+// backend/util/errors.js
+
 class NotFoundError {
   constructor(message) {
     this.message = message;

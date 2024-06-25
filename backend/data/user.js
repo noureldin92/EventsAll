@@ -1,19 +1,15 @@
 // backend/data/user.js
-
-const { hash } = require("bcryptjs");
-const { v4: generateId } = require("uuid");
-
-const { NotFoundError } = require("../util/errors");
-const { readData, writeData } = require("./util");
+const { v4: generateId } = require('uuid');
+const { NotFoundError } = require('../util/errors');
+const { readData, writeData } = require('./util');
 
 async function add(data) {
   const storedData = await readData();
   const userId = generateId();
-  const hashedPw = await hash(data.password, 12);
   if (!storedData.users) {
     storedData.users = [];
   }
-  storedData.users.push({ ...data, password: hashedPw, id: userId });
+  storedData.users.push({ ...data, id: userId });
   await writeData(storedData);
   return { id: userId, email: data.email, name: data.name };
 }
@@ -21,12 +17,12 @@ async function add(data) {
 async function get(email) {
   const storedData = await readData();
   if (!storedData.users || storedData.users.length === 0) {
-    throw new NotFoundError("Could not find any users.");
+    throw new NotFoundError('Could not find any users.');
   }
 
-  const user = storedData.users.find((ev) => ev.email === email);
+  const user = storedData.users.find((user) => user.email === email);
   if (!user) {
-    throw new NotFoundError("Could not find user for email " + email);
+    throw new NotFoundError('Could not find user for email ' + email);
   }
 
   return user;

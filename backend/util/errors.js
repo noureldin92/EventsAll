@@ -1,15 +1,15 @@
 // backend/util/errors.js
 
-class NotFoundError {
+class NotFoundError extends Error {
   constructor(message) {
-    this.message = message;
+    super(message);
     this.status = 404;
   }
 }
 
-class NotAuthError {
+class NotAuthError extends Error {
   constructor(message) {
-    this.message = message;
+    super(message);
     this.status = 401;
   }
 }

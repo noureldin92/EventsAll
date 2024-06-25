@@ -18,7 +18,13 @@ router.post('/signup', async (req, res, next) => {
       if (existingUser) {
         errors.email = 'Email exists already.';
       }
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof NotFoundError) {
+        // User doesn't exist, which is expected.
+      } else {
+        return next(error);
+      }
+    }
   }
 
   if (!isValidText(data.password, 6)) {
@@ -40,7 +46,7 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 

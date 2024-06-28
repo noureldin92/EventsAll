@@ -10,6 +10,12 @@
             "password": "1234567",
             "name": "soso",
             "id": "bdd61093-3227-423d-91d5-069042d792f7"
+        },
+        {
+            "email": "initial@initial.initial",
+            "password": "initial",
+            "name": "initial",
+            "id": "initialemptyarray"
         }
     ]
 }

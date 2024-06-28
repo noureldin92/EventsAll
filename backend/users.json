@@ -16,6 +16,12 @@
             "password": "initial",
             "name": "initial",
             "id": "initialemptyarray"
+        },
+        {
+            "email": "user@test.com",
+            "password": "01144026773",
+            "name": "user",
+            "id": "224466881122512"
         }
     ]
 }
